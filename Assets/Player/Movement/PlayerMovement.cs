@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float base_speed = 0.00175f;
-    float move_speed;
+    EntityMovement movement;
+    EntityStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Set the initial position of the player
-        
+        //Add enitity movement and stats to the player
+        movement = gameObject.GetComponent<EntityMovement>();
+        stats = gameObject.GetComponent<EntityStats>();
+        //Set a specific speed for the type of creature
+        movement.type_speed = 2.1f;
+        //Set the speed of the creature depending on the type of creature
+        movement.base_speed = movement.base_speed * movement.type_speed;
+
+        //Set the stats of the player
+        stats.max_hp = 100f;
+        stats.cur_hp = stats.max_hp;
+        stats.dmg = 10f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         wasdMove();
     }
@@ -22,23 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Function to move the player using WASD keys
     void wasdMove()
     {
-        // Get the input from WASD keys
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-
-        // Move the player using Rigidbody2D
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(x, y) * base_speed);
-
-        // Normalize the input to prevent faster diagonal movement
-        if ((x > 0 || x < 0) && (y > 0 || y < 0))
-        {
-            move_speed = base_speed * 0.66f;
-        }
-        else
-        {
-            move_speed = base_speed;
-        }
-
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movement.Move(input);
     }
 }

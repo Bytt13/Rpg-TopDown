@@ -18,10 +18,18 @@ public class Lama : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerMovement>().base_speed /= 2;
+        EntityMovement mover = collision.gameObject.GetComponent<EntityMovement>();
+        if (mover != null)
+        {
+            mover.base_speed /= 2;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerMovement>().base_speed *= 2;
+        EntityMovement mover = collision.gameObject.GetComponent<EntityMovement>();
+        if (mover != null)
+        {
+            mover.base_speed *= 2;
+        }
     }
 }
