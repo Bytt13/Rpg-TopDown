@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float chaseRange = 100f;
-    GameObject player;
-    public Transform target;
-    public Vector2 avoidDirection;
-    EntityMovement movement;
-    EntityStats stats;
-    private float avoidTimer = 0f;
-    private float avoidTime = 1f;
+    public float chaseRange = 100f; // Range within which the enemy will chase the player
+    GameObject player; // Reference to the player GameObject
+    public Transform target; // Target for the enemy to follow, typically the player
+    public Vector2 avoidDirection; // Direction to avoid obstacles
+    EntityMovement movement; // Reference to the EntityMovement script for movement control
+    EntityStats stats; // Reference to the EntityStats script for health and damage management
+    private float avoidTimer = 0f; // Timer to control avoidance behavior
+    private float avoidTime = 0.5f; // Duration for which the enemy will avoid obstacles
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
         stats.isDead();
     }
 
-    // Function to move the enemy towards the player
+    // Function to move the enemy towards the player while avoiding obstacles
     void following()
     {
          if (avoidTimer > 0)
@@ -68,6 +68,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // Function to deal damage to the player when they enter the trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -86,9 +87,10 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    // Function to handle collision with obstacles
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy"))
         {
             Vector2 normal = collision.contacts[0].normal;
             int side = Random.value > 0.5f ? 1 : -1;
@@ -97,7 +99,7 @@ public class EnemyAI : MonoBehaviour
             avoidTimer = avoidTime;
         }
 
-        
+
     }
 
 }

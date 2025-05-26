@@ -5,11 +5,10 @@ using UnityEngine;
 public class EntityStats : MonoBehaviour
 {
 
-    public float max_hp;
-    public float cur_hp;
-
-    public float dmg;
-    public float atk_spd;
+    public float max_hp; // Maximum health of the entity
+    public float cur_hp; // Current health of the entity
+    public float dmg; // Damage dealt by the entity
+    public float atk_spd; // Attack speed of the entity
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +27,7 @@ public class EntityStats : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //Function to check if the entity is dead
     public void isDead()
     {
         if (cur_hp <= 0)

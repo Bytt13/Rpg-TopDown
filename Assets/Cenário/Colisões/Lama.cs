@@ -16,6 +16,7 @@ public class Lama : MonoBehaviour
 
     }
 
+    //Function to cut te speed of the player in half when they enter the trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EntityMovement mover = collision.gameObject.GetComponent<EntityMovement>();
@@ -24,6 +25,8 @@ public class Lama : MonoBehaviour
             mover.base_speed /= 2;
         }
     }
+
+    //Function to restore the speed of the player when they exit the trigger
     private void OnTriggerExit2D(Collider2D collision)
     {
         EntityMovement mover = collision.gameObject.GetComponent<EntityMovement>();
