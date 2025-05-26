@@ -9,3 +9,7 @@ Criei uma classe separada para fazer o movimento de forma melhor, utilizando ape
 Fiz o código para os objetos dectarem colisoes, e aprimorei o sistema de lama e obstaculos, alem de criar um sistema de desvio de obstaculos para o inimigo
 ## Etapa 5 - Criando Sistema de Vida
 Fiz os inimigos ao colidirem com o player se auto destruirem e tirarem vida do jogador, porém o sistema de vida e dano vai ser refinado futurammente
+## Etapa 6 - Criando Barra de Vida
+Deixei o sistema de vida do player mais visual, configurando uma barra de vida pra ele
+## Etapa 7 - Combate
+Criei o sistema de tiros e cooldown, e fiz as balas interagirem com o cenario e com os inimigos
