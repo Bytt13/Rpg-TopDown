@@ -21,7 +21,10 @@ public class ProjectileDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EntityStats>().cur_hp -= damage; // Apply damage to the enemy's current HP
+            EntityStats enemy = collision.gameObject.GetComponent<EntityStats>();
+            enemy.cur_hp -= damage; // Apply damage to the enemy's current HP
+            enemy.killed = true; // Mark the enemy as killed
+            enemy.isDead(); // Check if the enemy is dead
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "Obstacle")
