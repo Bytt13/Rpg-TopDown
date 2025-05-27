@@ -13,3 +13,5 @@ Fiz os inimigos ao colidirem com o player se auto destruirem e tirarem vida do j
 Deixei o sistema de vida do player mais visual, configurando uma barra de vida pra ele
 ## Etapa 7 - Combate
 Criei o sistema de tiros e cooldown, e fiz as balas interagirem com o cenario e com os inimigos
+## Etapa 8 - KillCounter
+Criei um sistema de contador de kills, onde so sao contabilizadas kills limpas (ou seja, player matou, e nao inimigo morreu)
