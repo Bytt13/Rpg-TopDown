@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EntityStats : MonoBehaviour
 {
-
+    WaveManager waveManager;
     public float max_hp; // Maximum health of the entity
     public float cur_hp; // Current health of the entity
     public float dmg; // Damage dealt by the entity
@@ -15,6 +15,8 @@ public class EntityStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waveManager = GameObject.FindObjectOfType<WaveManager>();
+    
         is_alive = true;
     }
 
@@ -28,6 +30,7 @@ public class EntityStats : MonoBehaviour
     public void Death()
     {
         Destroy(gameObject);
+        Debug.Log("Entity Died: ");
     }
 
     //Function to check if the entity is dead
@@ -43,6 +46,7 @@ public class EntityStats : MonoBehaviour
                 hud.AddKill(); // Increment the kill count in the HUD
             }
 
+            waveManager.EnemyDied(); // Notify the WaveManager that an enemy has died
             Death(); 
         }
     }
