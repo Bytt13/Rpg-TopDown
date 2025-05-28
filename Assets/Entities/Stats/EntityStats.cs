@@ -31,6 +31,10 @@ public class EntityStats : MonoBehaviour
     {
         Destroy(gameObject);
         Debug.Log("Entity Died: ");
+        if (CompareTag("Player"))
+        {
+            FindObjectOfType<GameOverManager>().ShowGameOverPanel();
+        }
     }
 
     //Function to check if the entity is dead
@@ -47,7 +51,7 @@ public class EntityStats : MonoBehaviour
             }
 
             waveManager.EnemyDied(); // Notify the WaveManager that an enemy has died
-            Death(); 
+            Death();
         }
     }
 }
